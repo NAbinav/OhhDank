@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import {
@@ -8,7 +9,7 @@ import {
   ShoppingCart,
   Mail,
   LogOut,
-  UserPen,
+  Edit, // Replacing UserPen with Edit (a valid icon in lucide-react)
 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,6 +17,10 @@ import { motion, AnimatePresence } from "framer-motion";
 const Navbar = () => {
   const { data: session } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <div className="flex justify-between items-center p-4 font-light bg-white shadow-lg fixed w-full z-50">
@@ -61,11 +66,13 @@ const Navbar = () => {
         {session ? (
           <div className="relative">
             <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+              onClick={toggleDropdown}
               className="flex items-center gap-2 border-gray-700 border-2 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
             >
               <User />
-              <span className="hidden md:inline">{session.user.name}</span>
+              <span className="hidden md:inline">
+                {session?.user?.name || "User"}
+              </span>
             </button>
             <AnimatePresence>
               {dropdownOpen && (
@@ -80,27 +87,29 @@ const Navbar = () => {
                     href="/profile"
                     className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-300"
                   >
-                    <UserPen />
-                    Profile
+                    <Edit />
+                    <span>Profile</span>
                   </Link>
                   <button
                     onClick={() => signOut()}
                     className="flex items-center gap-2 w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
                   >
                     <LogOut />
-                    Sign Out
+                    <span>Sign Out</span>
                   </button>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
         ) : (
-          <button
-            className="border-gray-700 border-2 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-            onClick={() => signIn()}
-          >
-            Sign Up
-          </button>
+          <div>
+            <button
+              className="border-gray-700 border-2 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+              onClick={() => signIn()}
+            >
+              Sign Up
+            </button>
+          </div>
         )}
       </div>
     </div>
