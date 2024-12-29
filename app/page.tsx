@@ -5,11 +5,8 @@ import { SessionProvider } from "next-auth/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import Im1 from "@/public/IMG_5610.png";
-import Im2 from "@/public/IMG_5617.png";
-import Im3 from "@/public/IMG_5613.png";
-import Im4 from "@/public/IMG_5618.png";
-const images = [Im1, Im2, Im3];
+
+const images = ["/IMG_5610.png", "/IMG_5617.png", "/IMG_5613.png"];
 
 const Page = () => {
   const [currentImage, setCurrentImage] = useState(0);
