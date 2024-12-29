@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center p-4 font-light bg-white shadow-lg fixed w-full z-50">
+    <div className="flex justify-between items-center p-4 font-light shadow-lg fixed w-full z-50 bg-[rgba(255,255,255,0.15)] backdrop-blur-lg">
       <motion.div
         className="text-2xl font-bold text-green-700"
         initial={{ opacity: 0 }}
@@ -32,7 +32,7 @@ const Navbar = () => {
       >
         Ohh Dank!!
       </motion.div>
-      <nav className="hidden md:flex gap-8">
+      <nav className="hidden md:flex gap-8 border-[rgba(255,255,255,0.7)] border-2 p-8 bg-[rgba(255,255,255,0.35)] backdrop-blur-lg rounded-3xl">
         <Link
           href="/"
           className="flex items-center gap-2 text-gray-700 hover:text-green-700 transition-colors duration-300"

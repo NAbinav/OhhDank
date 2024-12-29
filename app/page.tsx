@@ -32,6 +32,7 @@ const Page = () => {
           alt="Slideshow Image"
           layout="fill"
           objectFit="cover"
+          quality={100}
           className="absolute inset-0 w-full h-full"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center">
@@ -52,7 +53,7 @@ const Page = () => {
             Your one-stop shop for the latest products
           </motion.p>
           <motion.button
-            className="bg-green-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105"
+            className="bg-[rgba(60,154,60,0.82)]  text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -75,6 +76,7 @@ const Page = () => {
               alt="Product 1"
               width={250}
               height={250}
+              quality={100}
               className="w-full h-auto mb-4 rounded-lg"
             />
             <h3 className="text-xl font-semibold mb-2">Product 1</h3>
@@ -93,6 +95,7 @@ const Page = () => {
               alt="Product 2"
               width={250}
               height={250}
+              quality={100}
               className="w-full h-auto mb-4 rounded-lg"
             />
             <h3 className="text-xl font-semibold mb-2">Product 2</h3>
@@ -111,6 +114,7 @@ const Page = () => {
               alt="Product 3"
               width={250}
               height={250}
+              quality={100}
               className="w-full h-auto mb-4 rounded-lg"
             />
             <h3 className="text-xl font-semibold mb-2">Product 3</h3>
@@ -123,7 +127,7 @@ const Page = () => {
       </section>
 
       <footer className="bg-green-900 text-white py-4 text-center">
-        <p>© 2024 ShopNow. All rights reserved.</p>
+        <p>© 2024 OhhDank! All rights reserved.</p>
       </footer>
     </div>
   );
