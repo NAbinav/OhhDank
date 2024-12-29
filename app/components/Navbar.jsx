@@ -11,6 +11,7 @@ import {
   UserPen,
 } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -18,7 +19,14 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center p-4 font-light bg-white shadow-lg fixed w-full z-50">
-      <div className="text-2xl font-bold text-green-700">Ohh Dank!!</div>
+      <motion.div
+        className="text-2xl font-bold text-green-700"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        Ohh Dank!!
+      </motion.div>
       <nav className="hidden md:flex gap-8">
         <Link
           href="/"
@@ -59,24 +67,32 @@ const Navbar = () => {
               <User />
               <span className="hidden md:inline">{session.user.name}</span>
             </button>
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
-                <Link
-                  href="/profile"
-                  className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100"
+            <AnimatePresence>
+              {dropdownOpen && (
+                <motion.div
+                  className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <UserPen />
-                  Profile
-                </Link>
-                <button
-                  onClick={() => signOut()}
-                  className="flex items-center gap-2 w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >
-                  <LogOut />
-                  Sign Out
-                </button>
-              </div>
-            )}
+                  <Link
+                    href="/profile"
+                    className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-300"
+                  >
+                    <UserPen />
+                    Profile
+                  </Link>
+                  <button
+                    onClick={() => signOut()}
+                    className="flex items-center gap-2 w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    <LogOut />
+                    Sign Out
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ) : (
           <button

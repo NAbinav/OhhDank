@@ -26,16 +26,15 @@ const Page = () => {
       <SessionProvider>
         <Navbar />
       </SessionProvider>
-      <header className="flex flex-col items-center gap-10 justify-center w-screen h-screen">
-        <Image src />
+      <header className="relative flex flex-col items-center gap-10 justify-center w-screen h-screen overflow-hidden">
         <Image
           src={images[currentImage]}
           alt="Slideshow Image"
-          height={100000}
-          width={100000}
-          className="inset-0 coverimg shad"
+          layout="fill"
+          objectFit="cover"
+          className="absolute inset-0 w-full h-full"
         />
-        <div className="inset-0 flex flex-col justify-center items-center text-center">
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center">
           <motion.h1
             className="text-4xl md:text-5xl font-bold mb-4 text-white"
             initial={{ opacity: 0, y: -50 }}
@@ -53,7 +52,7 @@ const Page = () => {
             Your one-stop shop for the latest products
           </motion.p>
           <motion.button
-            className="bg-green-700 text-white py-2 px-4 rounded"
+            className="bg-green-700 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -68,7 +67,7 @@ const Page = () => {
         </h2>
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <motion.div
-            className="border p-4 rounded shadow bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg"
+            className="border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
             whileHover={{ scale: 1.05 }}
           >
             <Image
@@ -76,35 +75,35 @@ const Page = () => {
               alt="Product 1"
               width={250}
               height={250}
-              className="w-full h-auto mb-4 rounded"
+              className="w-full h-auto mb-4 rounded-lg"
             />
             <h3 className="text-xl font-semibold mb-2">Product 1</h3>
             <p className="text-lg font-bold mb-4">$19.99</p>
-            <button className="bg-green-500 text-white py-2 px-4 rounded">
+            <button className="bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105">
               Add to Cart
             </button>
           </motion.div>
 
           <motion.div
-            className="border p-4 rounded shadow bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg"
+            className="border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
             whileHover={{ scale: 1.05 }}
           >
             <Image
               src={Im3}
-              alt=""
+              alt="Product 2"
               width={250}
               height={250}
-              className="w-full h-auto mb-4 rounded"
+              className="w-full h-auto mb-4 rounded-lg"
             />
             <h3 className="text-xl font-semibold mb-2">Product 2</h3>
             <p className="text-lg font-bold mb-4">$29.99</p>
-            <button className="bg-green-500 text-white py-2 px-4 rounded">
+            <button className="bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105">
               Add to Cart
             </button>
           </motion.div>
 
           <motion.div
-            className="border p-4 rounded shadow bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg"
+            className="border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
             whileHover={{ scale: 1.05 }}
           >
             <Image
@@ -112,11 +111,11 @@ const Page = () => {
               alt="Product 3"
               width={250}
               height={250}
-              className="w-full h-auto mb-4 rounded"
+              className="w-full h-auto mb-4 rounded-lg"
             />
             <h3 className="text-xl font-semibold mb-2">Product 3</h3>
             <p className="text-lg font-bold mb-4">$39.99</p>
-            <button className="bg-green-500 text-white py-2 px-4 rounded">
+            <button className="bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105">
               Add to Cart
             </button>
           </motion.div>
