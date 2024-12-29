@@ -1,0 +1,48 @@
+.all {
+  font-weight: 200;
+  font-size: 1.2rem;
+}
+
+.navbar {
+  background-color: var(--color-background);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  width: max-content;
+}
+
+.navList {
+  display: flex;
+  gap: 4rem;
+  padding: 20px;
+  margin: 0%;
+}
+
+.navItem {
+  list-style: none;
+}
+
+.navLink {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--color-secondary);
+}
+
+.signupButton {
+  background-color: var(--color-text-light);
+  color: var(--color-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.signupButton:hover {
+  background-color: var(--color-secondary);
+}
