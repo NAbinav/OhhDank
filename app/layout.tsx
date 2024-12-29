@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
-import App from "./App";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import AuthProvider from "./components/admin/AuthProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
