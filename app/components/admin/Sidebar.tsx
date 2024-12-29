@@ -10,7 +10,7 @@ import {
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Icon from "@/public/assets/icon.png";
+import Icon from "@/public/icon.png";
 import { usePathname } from "next/navigation";
 
 const menu = [
