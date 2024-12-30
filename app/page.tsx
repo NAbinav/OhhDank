@@ -13,7 +13,7 @@ import Im4 from "@/public/all_tee.jpeg";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -130,28 +130,28 @@ const Page = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaFacebook className="text-3xl text-blue-600 hover:text-blue-800 transition-colors duration-300" />
+            <Facebook className="text-3xl text-blue-600 hover:text-blue-800 transition-colors duration-300" />
           </a>
           <a
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTwitter className="text-3xl text-blue-400 hover:text-blue-600 transition-colors duration-300" />
+            <Twitter className="text-3xl text-blue-400 hover:text-blue-600 transition-colors duration-300" />
           </a>
           <a
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaInstagram className="text-3xl text-pink-600 hover:text-pink-800 transition-colors duration-300" />
+            <Instagram className="text-3xl text-pink-600 hover:text-pink-800 transition-colors duration-300" />
           </a>
           <a
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaLinkedin className="text-3xl text-blue-700 hover:text-blue-900 transition-colors duration-300" />
+            <Linkedin className="text-3xl text-blue-700 hover:text-blue-900 transition-colors duration-300" />
           </a>
         </div>
         <p className="text-lg">Contact us at: ohhdank2@gmail.com</p>
