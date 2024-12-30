@@ -23,7 +23,6 @@ const Navbar = ({setShowCart}) => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-  const [showCart,setShowCart]=useState(false);
   return (
     <div className="flex justify-between items-center p-4 font-light bg-[rgba(255,255,255,0.1)] backdrop-blur-lg shadow-lg fixed w-full z-50">
       <motion.div

@@ -4,7 +4,6 @@ import Navbar from "@/app/components/Navbar";
 import Products from "@/app/components/Products";
 import { SessionProvider } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import Im1 from "@/public/IMG_5610.png";
