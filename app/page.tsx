@@ -5,10 +5,23 @@ import { SessionProvider } from "next-auth/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Im1 from "@/public/IMG_5610.png";
+import Im2 from "@/public/IMG_5617.png";
+import Im3 from "@/public/IMG_5613.png";
+import Im4 from "@/public/IMG_5618.png";
+const images = [Im1, Im2, Im3];
 
-const images = ["/IMG_5610.png", "/IMG_5617.png", "/IMG_5613.png"];
+import Lenis from "lenis";
 
 const Page = () => {
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time: any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -19,7 +32,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div>
+    <div className="scroll-smooth">
       <SessionProvider>
         <Navbar />
       </SessionProvider>
@@ -50,7 +63,7 @@ const Page = () => {
             Your one-stop shop for the latest products
           </motion.p>
           <motion.button
-            className="bg-[rgba(60,154,60,0.82)]  text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105"
+            className="bg-[rgba(60,154,60,0.82)] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
