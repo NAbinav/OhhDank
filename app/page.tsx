@@ -1,34 +1,70 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Navbar from "@/app/components/Navbar";
 import { SessionProvider } from "next-auth/react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Im1 from "@/public/IMG_5610.png";
 import Im2 from "@/public/IMG_5617.png";
 import Im3 from "@/public/IMG_5613.png";
 import Im4 from "@/public/IMG_5618.png";
+import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const images = [Im1, Im2, Im3];
 
-import Lenis from "lenis";
-
 const Page = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     const lenis = new Lenis();
-    function raf(time: any) {
+    lenisRef.current = lenis;
+
+    function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-  }, []);
-  const [currentImage, setCurrentImage] = useState(0);
 
-  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
     }, 3000);
-    return () => clearInterval(interval);
+
+    const directions = ["left", "right", "top", "bottom"];
+    gsap.utils.toArray(".productCard").forEach((card, index) => {
+      const direction = directions[index % directions.length];
+      const x = direction === "left" ? -100 : direction === "right" ? 100 : 0;
+      const y = direction === "top" ? -100 : direction === "bottom" ? 100 : 0;
+
+      gsap.fromTo(
+        card,
+        { opacity: 0, x, y },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "+=500",
+            scrub: true,
+          },
+          duration: 1,
+          stagger: 0.3,
+        }
+      );
+    });
+
+    return () => {
+      clearInterval(interval);
+      lenis.destroy();
+    };
   }, []);
 
   return (
@@ -37,14 +73,25 @@ const Page = () => {
         <Navbar />
       </SessionProvider>
       <header className="relative flex flex-col items-center gap-10 justify-center w-screen h-screen overflow-hidden">
-        <Image
-          src={images[currentImage]}
-          alt="Slideshow Image"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          className="absolute inset-0 w-full h-full"
-        />
+        <AnimatePresence>
+          <motion.div
+            key={currentImage}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={images[currentImage]}
+              alt="Slideshow Image"
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              className="absolute inset-0 w-full h-full"
+            />
+          </motion.div>
+        </AnimatePresence>
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center">
           <motion.h1
             className="text-4xl md:text-5xl font-bold mb-4 text-white"
@@ -78,11 +125,13 @@ const Page = () => {
         </h2>
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <motion.div
-            className="border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
-            whileHover={{ scale: 1.05 }}
+            className="productCard border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
           >
             <Image
-              src={Im4}
+              src={Im1}
               alt="Product 1"
               width={250}
               height={250}
@@ -97,8 +146,10 @@ const Page = () => {
           </motion.div>
 
           <motion.div
-            className="border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
-            whileHover={{ scale: 1.05 }}
+            className="productCard border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
           >
             <Image
               src={Im3}
@@ -116,8 +167,10 @@ const Page = () => {
           </motion.div>
 
           <motion.div
-            className="border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
-            whileHover={{ scale: 1.05 }}
+            className="productCard border p-4 rounded-lg shadow-lg bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg transition-transform transform hover:scale-105"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
             <Image
               src={Im2}
@@ -134,6 +187,42 @@ const Page = () => {
             </button>
           </motion.div>
         </div>
+      </section>
+
+      <section className="py-12 bg-gray-100 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">Follow Us</h2>
+        <div className="flex justify-center gap-8 mb-8">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaFacebook className="text-3xl text-blue-600 hover:text-blue-800 transition-colors duration-300" />
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaTwitter className="text-3xl text-blue-400 hover:text-blue-600 transition-colors duration-300" />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram className="text-3xl text-pink-600 hover:text-pink-800 transition-colors duration-300" />
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedin className="text-3xl text-blue-700 hover:text-blue-900 transition-colors duration-300" />
+          </a>
+        </div>
+        <p className="text-lg">Contact us at: contact@ohhdank.com</p>
+        <p className="text-lg">Phone: +1 234 567 890</p>
       </section>
 
       <footer className="bg-green-900 text-white py-4 text-center">
