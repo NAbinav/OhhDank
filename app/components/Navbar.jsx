@@ -113,7 +113,7 @@ const Navbar = ({setShowCart}) => {
           </div>
         )}
       </div>
-      <div className="relative"><ShoppingCart size={32}/><span className="absolute -right-2 -top-2 bg-red-500 w-6 h-6 grid place-items-center rounded-full">{cartCount}</span></div>
+      <div className="relative cursor-pointer"><ShoppingCart size={32}/><span className="absolute -right-2 -top-2 bg-red-500 w-6 h-6 grid place-items-center rounded-full">{cartCount}</span></div>
     </div>
   );
 };
