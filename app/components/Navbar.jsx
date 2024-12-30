@@ -13,15 +13,16 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAppSelector } from "../redux/hooks";
 
-const Navbar = () => {
+const Navbar = ({setShowCart}) => {
+  const cartCount = useAppSelector((state)=>state.cartReducer.length);
   const { data: session } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-
   return (
     <div className="flex justify-between items-center p-4 font-light bg-[rgba(255,255,255,0.1)] backdrop-blur-lg shadow-lg fixed w-full z-50">
       <motion.div
@@ -112,6 +113,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      <div className="relative"><ShoppingCart size={32}/><span className="absolute -right-2 -top-2 bg-red-500 w-6 h-6 grid place-items-center rounded-full">{cartCount}</span></div>
     </div>
   );
 };

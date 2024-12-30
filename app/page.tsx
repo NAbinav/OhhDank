@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Navbar from "@/app/components/Navbar";
-import { SessionProvider } from "next-auth/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -20,12 +19,10 @@ const Page = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
-
+  
   return (
     <div>
-      <SessionProvider>
         <Navbar />
-      </SessionProvider>
       <header className="relative flex flex-col items-center gap-10 justify-center w-screen h-screen overflow-hidden">
         <Image
           src={images[currentImage]}
