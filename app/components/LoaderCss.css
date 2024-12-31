@@ -1,0 +1,33 @@
+.spinner {
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -30px 0 0 -30px; /* Center the spinner */
+  animation: rotation 1s infinite linear;
+  border: 6px solid rgba(0, 0, 0, 0.2); /* Light gray border for outer circle */
+  border-radius: 50%;
+}
+
+.spinner:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px; /* Offset to account for the border width */
+  left: -6px;
+  height: calc(100% + 12px); /* Extend to cover border width */
+  width: calc(100% + 12px); /* Extend to cover border width */
+  border: 6px solid transparent; /* Transparent for three sides */
+  border-top-color: rgba(0, 0, 0, 0.8); /* Darker top segment */
+  border-radius: 50%;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
