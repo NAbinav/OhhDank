@@ -3,18 +3,14 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cartSlice"; // Adjust the import path as necessary
 import Loader from "../../components/Loader";
-
+import Image from "next/image";
 // Correct import using named imports
-import { from } from "node-vibrant/browser";
 
 export default function Page({ params }) {
   const { id } = params; // Get the dynamic route parameter from params
-  const [product, setProduct] = useState(null);
-  const [error, setError] = useState(null);
-  const [bgColor, setBgColor] = useState("#ffffff");
   const dispatch = useDispatch();
-  const imgRef = useRef(null);
 
+  const [product, setProduct] = useState(null);
   useEffect(() => {
     // Fetch product data
     async function fetchProduct() {
@@ -37,37 +33,6 @@ export default function Page({ params }) {
     fetchProduct();
   }, [id]);
 
-  useEffect(() => {
-    async function extractColor() {
-      if (product && imgRef.current) {
-        try {
-          // Use the 'from' method after the correct import
-          const palette = await from(product.imgSrc).getPalette();
-          console.log("Extracted Palette:", palette);
-
-          if (palette.Vibrant) {
-            const { r, g, b } = palette.Vibrant.rgb;
-            setBgColor(`rgb(${r}, ${g}, ${b})`);
-          } else {
-            console.warn("No Vibrant color found in the palette.");
-          }
-        } catch (err) {
-          console.error("Error extracting color palette:", err);
-        }
-      }
-    }
-
-    extractColor();
-  }, [product]);
-
-  useEffect(() => {
-    console.log("Updated Background Color:", bgColor);
-  }, [bgColor]);
-
-  if (error) {
-    return <p className="text-red-500 text-lg">{error}</p>;
-  }
-
   if (!product) {
     return <Loader />;
   }
@@ -77,13 +42,9 @@ export default function Page({ params }) {
   };
 
   return (
-    <div
-      className="flex flex-col items-center p-5 rounded-lg shadow-md"
-      style={{ backgroundColor: bgColor }}
-    >
+    <div className="flex flex-col items-center p-5 rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-5">{product.name}</h1>
-      <img
-        ref={imgRef}
+      <Image
         src={product.imgSrc}
         alt={product.name}
         width={500}
