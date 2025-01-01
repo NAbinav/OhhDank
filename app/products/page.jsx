@@ -15,8 +15,8 @@ const page = () => {
     <div>
       {products.map((product) => {
         return (
-          <div>
-            <Product key={product._id} product={product} />
+          <div key={product._id}>
+            <Product product={product} />
           </div>
         );
       })}

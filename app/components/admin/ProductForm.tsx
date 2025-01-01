@@ -15,6 +15,7 @@ interface IPayload {
   name: string;
   category: string;
   price: string;
+  description: string;
 }
 
 const ProductForm = () => {
@@ -24,6 +25,7 @@ const ProductForm = () => {
     name: "",
     category: "",
     price: "",
+    description: "",
   });
 
   const dispatch = useAppDispatch();
@@ -40,6 +42,7 @@ const ProductForm = () => {
           name: "",
           category: "",
           price: "",
+          description: "",
         });
       })
       .catch((error) => console.log(error))
@@ -100,6 +103,16 @@ const ProductForm = () => {
           onChange={(e) => {
             setPayload({ ...payload, price: e.target.value });
           }}
+          required
+        />
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Description"
+          value={payload.category}
+          onChange={(e) =>
+            setPayload({ ...payload, description: e.target.value })
+          }
           required
         />
         <button type="submit" className={styles.submitButton}>
