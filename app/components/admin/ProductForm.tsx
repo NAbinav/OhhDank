@@ -109,7 +109,7 @@ const ProductForm = () => {
           className={styles.input}
           type="text"
           placeholder="Description"
-          value={payload.category}
+          value={payload.description}
           onChange={(e) =>
             setPayload({ ...payload, description: e.target.value })
           }

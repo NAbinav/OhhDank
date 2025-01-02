@@ -9,11 +9,11 @@ export async function POST(request:NextRequest){
         await connectToDB();
         const data= await Product.create({
             imgSrc,
-            description,
             fileKey,
             name,
             category,
-            price
+            price,
+            description,
         })
         return NextResponse.json({msg:"Product added successfully",data});
     }catch(error){
