@@ -52,7 +52,9 @@ const ProductForm = () => {
   };
 
   return (
-    <div className={styles.formContainer}>
+    <div
+      className={`${styles.formContainer} backdrop-filter backdrop-blur-lg bg-opacity-30 border border-gray-200 transition-all duration-300 ease-in-out bg-green-100`}
+    >
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.title}>Add Product</h2>
         <Image
@@ -81,14 +83,14 @@ const ProductForm = () => {
         />
         <input
           type="text"
-          className={styles.input}
+          className={`${styles.input} bg-green-100 transition-all duration-300 ease-in-out`}
           placeholder="Enter Name"
           value={payload.name}
           onChange={(e) => setPayload({ ...payload, name: e.target.value })}
           required
         />
         <input
-          className={styles.input}
+          className={`${styles.input} bg-green-100 transition-all duration-300 ease-in-out`}
           type="text"
           placeholder="Enter Category"
           value={payload.category}
@@ -96,7 +98,7 @@ const ProductForm = () => {
           required
         />
         <input
-          className={styles.input}
+          className={`${styles.input} bg-green-100 transition-all duration-300 ease-in-out`}
           type="text"
           placeholder="Enter Price"
           value={payload.price}
@@ -106,7 +108,7 @@ const ProductForm = () => {
           required
         />
         <input
-          className={styles.input}
+          className={`${styles.input} bg-green-100 transition-all duration-300 ease-in-out`}
           type="text"
           placeholder="Description"
           value={payload.description}
@@ -115,7 +117,10 @@ const ProductForm = () => {
           }
           required
         />
-        <button type="submit" className={styles.submitButton}>
+        <button
+          type="submit"
+          className={`${styles.submitButton} bg-green-700 text-white transition-all duration-300 ease-in-out hover:bg-green-600`}
+        >
           <PlusCircle /> Add
         </button>
       </form>
