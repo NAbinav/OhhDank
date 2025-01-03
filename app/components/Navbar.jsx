@@ -15,8 +15,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppSelector } from "../redux/hooks";
 
-const Navbar = ({setShowCart}) => {
-  const cartCount = useAppSelector((state)=>state.cartReducer.length);
+const Navbar = ({ setShowCart }) => {
+  const cartCount = useAppSelector((state) => state.cartReducer.length);
   const { data: session } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -49,7 +49,7 @@ const Navbar = ({setShowCart}) => {
           <span>ABOUT</span>
         </Link>
         <Link
-          href="/services"
+          href="/products"
           className="flex items-center gap-2 text-gray-700 hover:text-green-700 transition-colors duration-300"
         >
           <ShoppingCart />
@@ -113,7 +113,12 @@ const Navbar = ({setShowCart}) => {
           </div>
         )}
       </div>
-      <div className="relative cursor-pointer"><ShoppingCart size={32}/><span className="absolute -right-2 -top-2 bg-red-500 w-6 h-6 grid place-items-center rounded-full">{cartCount}</span></div>
+      <div className="relative cursor-pointer">
+        <ShoppingCart size={32} />
+        <span className="absolute -right-2 -top-2 bg-red-500 w-6 h-6 grid place-items-center rounded-full">
+          {cartCount}
+        </span>
+      </div>
     </div>
   );
 };
